@@ -1,2 +1,2 @@
-# document format HDS Metalica
+# Document format HDS Metalica
 Formatos de impresión para HDS Metalica
