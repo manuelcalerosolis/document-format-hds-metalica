@@ -35,17 +35,60 @@
                 </t>
             </t>
         </template>
+
         <template id="document_invoice_hds_metalica.report_invoice_hds_metalica">
             <t t-name="document_invoice_hds_metalica.report_invoice_hds_metalica">
                 <t t-call="document_invoice_hds_metalica.external_layout_clean_hds_metalica">
+
                     <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+
                     <div
                         class="page"
                         style="padding-top: 50px; padding-bottom:0px; !important;"
                     >
                         <!-- Datos del Documento-->
+
+                        <table
+                            class="table table-sm o_main_table"
+                            style="width: 50%; clear: both; border: 1px solid black;"
+                            >
+                            <thead>
+                                <tr>
+                                    <th
+                                        style="background-color: lightgray; border: 1px solid black; padding-top: 5px; padding-bottom: 5px; margin: 0px; width:60%; !important;font-size:0.9em;"
+                                    >
+                                        <strong>Emisor</strong>
+                                    </th>
+                                    <th
+                                        style="background-color: lightgray; border: 1px solid black; padding-top: 5px; padding-bottom: 5px; margin: 0px; width:60%; !important;font-size:0.9em;"
+                                    >
+                                        <strong>Destinatario</strong>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong t-field="company.partner_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.partner_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span t-field="company.partner_id.vat"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.partner_id.vat"/>
+                                    </td>
+                                </tr>
+
+                            </thead>
+                        </table>
+
                         <!-- Datos del movimiento -->
-                        <div style="width:50%;float:left;clear:both;margin-top:5px;">
+                        <div style="width: 50%; float: left; clear: both; margin-top: 5px;">
+
                             <ul class="list-unstyled">
                                 <li>
                                     <span t-if="o.type == 'out_invoice' and o.state == 'posted'">
