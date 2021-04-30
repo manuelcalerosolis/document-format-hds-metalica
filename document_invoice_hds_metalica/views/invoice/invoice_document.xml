@@ -81,48 +81,78 @@
                                             <p style="margin:0;padding:0;font-weight:bolder;margin-left:2px;">Emisor</p>
                                         </div>
                                         <ul style="list-style-type:none;margin:0;padding:0;min-height:170px;font-size:0.9em;margin-left:2px;">
-                                            <li t-if="o.company_id.name"><span t-field="o.company_id.name"/></li>
-                                            <li t-if="o.company_id.vat"><span t-field="o.company_id.vat"/></li>
-                                            <li t-if="o.company_id.street"><span t-field="o.company_id.street"/></li>
+                                            <li t-if="o.company_id.name">
+                                                <span t-field="o.company_id.name"/>
+                                            </li>
+                                            <li t-if="o.company_id.vat">
+                                                <span t-field="o.company_id.vat"/>
+                                            </li>
+                                            <li t-if="o.company_id.street">
+                                                <span t-field="o.company_id.street"/>
+                                            </li>
                                             <li>
                                                 <t t-if="o.company_id.zip">
                                                     <span t-field="o.company_id.zip"/>
                                                 </t>
-                                                <t t-if="o.company_id.zip_id.city_id">
+                                                <t t-if="'zip_id' in o.fields_get() and o.company_id.zip_id.city_id">
                                                     <span t-field="o.company_id.zip_id.city_id.name"/>
                                                 </t>
                                                 <t t-if="o.company_id.state_id">
                                                     (<span t-field="o.company_id.state_id.name"/>)
                                                 </t>
                                             </li>
-                                            <li t-if="o.company_id.phone">Tel. <span t-field="o.company_id.phone"/></li>
-                                            <li t-if="o.company_id.email"><span t-field="o.company_id.email"/></li>
+                                            <li t-if="o.company_id.phone">Tel.
+                                                <span t-field="o.company_id.phone"/>
+                                            </li>
+                                            <li t-if="o.company_id.email">
+                                                <span t-field="o.company_id.email"/>
+                                            </li>
                                         </ul>
-                                         <div style="width:100%;background-color:#DFD9D8;">
-                                            <p style="margin:0;padding:0;font-weight:bolder;height:25px;margin-left:2px;">Nº Factura</p>
+                                        <div style="width:100%;background-color:#DFD9D8;">
+                                            <p style="margin:0;padding:0;font-weight:bolder;height:25px;margin-left:2px;">
+                                                Nº Factura
+                                            </p>
                                         </div>
-                                          <ul style="list-style-type:none;margin:0;padding:0;height:25px;margin-left:2px;">
-                                            <li><span t-field="o.name"/></li>
+                                        <ul style="list-style-type:none;margin:0;padding:0;height:25px;margin-left:2px;">
+                                            <li>
+                                                <span t-field="o.name"/>
+                                            </li>
                                         </ul>
 
                                     </div>
                                     <div style="width:50%;float:left;">
                                         <div style="width:100%;background-color:#DFD9D8;height:25px;">
-                                             <p style="margin:0!important;padding:0;font-weight:bolder;">Destinatario</p>
+                                            <p style="margin:0!important;padding:0;font-weight:bolder;">Destinatario</p>
                                         </div>
                                         <ul style="list-style-type:none;margin:0;padding:0;min-height:170px;font-size:0.9em;">
-                                            <li t-if="o.partner_id.name"><span t-field="o.partner_id.name"/></li>
-                                            <li t-if="o.partner_id.vat">CIF: <span t-field="o.partner_id.vat"/></li>
-                                            <li><span t-field="o.partner_id.street"/></li>
-                                            <li><span t-field="o.partner_id.zip"/> <span t-field="o.partner_id.city"/> (<span t-field="o.partner_id.state_id.name"/>)</li>
-                                            <li>Tel. <span t-field="o.partner_id.phone"/></li>
-                                            <li><span t-field="o.partner_id.email"/></li>
+                                            <li t-if="o.partner_id.name">
+                                                <span t-field="o.partner_id.name"/>
+                                            </li>
+                                            <li t-if="o.partner_id.vat">CIF:
+                                                <span t-field="o.partner_id.vat"/>
+                                            </li>
+                                            <li>
+                                                <span t-field="o.partner_id.street"/>
+                                            </li>
+                                            <li>
+                                                <span t-field="o.partner_id.zip"/>
+                                                <span t-field="o.partner_id.city"/>
+                                                (<span t-field="o.partner_id.state_id.name"/>)
+                                            </li>
+                                            <li>Tel.
+                                                <span t-field="o.partner_id.phone"/>
+                                            </li>
+                                            <li>
+                                                <span t-field="o.partner_id.email"/>
+                                            </li>
                                         </ul>
-                                         <div style="width:100%;background-color:#DFD9D8;height:25px;">
+                                        <div style="width:100%;background-color:#DFD9D8;height:25px;">
                                             <p style="margin:0;padding:0;font-weight:bolder;">Fecha</p>
                                         </div>
-                                          <ul style="list-style-type:none;margin:0;padding:0;height:25px;">
-                                            <li><span t-field="o.invoice_date"/></li>
+                                        <ul style="list-style-type:none;margin:0;padding:0;height:25px;">
+                                            <li>
+                                                <span t-field="o.invoice_date"/>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -154,17 +184,29 @@
                                     <tr style="width:100%;background-color:#DFD9D8;height:25px;font-size:1.2em;">
                                         <th style="padding:0px;margin:0px;font-size:0.7em;border-bottom:2px solid black;">
                                             <div style="clear:both;color:black;">
-                                                <div style="width:70%;display:block;float:left;text-align:center;border-right:2px solid black;height:25px;">
-                                                    <span><b> Concepto </b></span>
+                                                <div
+                                                    style="width:70%;display:block;float:left;text-align:center;border-right:2px solid black;height:25px;">
+                                                    <span>
+                                                        <b>Concepto</b>
+                                                    </span>
                                                 </div>
-                                                <div style="width:10%;display:block;float:left;text-align:center;border-right:2px solid black;height:25px;">
-                                                    <span><b> Cantidad </b></span>
+                                                <div
+                                                    style="width:10%;display:block;float:left;text-align:center;border-right:2px solid black;height:25px;">
+                                                    <span>
+                                                        <b>Cantidad</b>
+                                                    </span>
                                                 </div>
-                                                <div style="width:10%;display:block;float:left;text-align:center;border-right:2px solid black;height:25px;">
-                                                    <span><b> Precio </b></span>
+                                                <div
+                                                    style="width:10%;display:block;float:left;text-align:center;border-right:2px solid black;height:25px;">
+                                                    <span>
+                                                        <b>Precio</b>
+                                                    </span>
                                                 </div>
-                                                <div style="width:10%;display:block;float:left;text-align:center;height:25px;">
-                                                    <span><b> Importe </b></span>
+                                                <div
+                                                    style="width:10%;display:block;float:left;text-align:center;height:25px;">
+                                                    <span>
+                                                        <b>Importe</b>
+                                                    </span>
                                                 </div>
                                             </div>
                                         </th>
@@ -182,7 +224,7 @@
                                                 <!-- si es nota -->
                                                 <t t-if="not line.product_id">
                                                     <div class="text-left" style="font-size:0.7em;">
-                                                        <span style="margin-left:15px;"> NOTA: </span>
+                                                        <span style="margin-left:15px;">NOTA:</span>
                                                         <span t-field="line.name"/>
                                                     </div>
                                                     <!-- Fin si es nota -->
@@ -190,34 +232,44 @@
                                                 <t t-else="">
                                                     <!-- Impresion de lineas -->
                                                     <div style="clear:both;">
-                                                        <div style="width:70%;display:block;float:left;border-right:2px solid black;height:25px;">
-                                                           <t t-if="line.product_id">
-                                                               <span style="margin-left:2px;" t-field="line.product_id"/>
-                                                           </t>
+                                                        <div
+                                                            style="width:70%;display:block;float:left;border-right:2px solid black;height:25px;">
+                                                            <t t-if="line.product_id">
+                                                                <span style="margin-left:2px;"
+                                                                      t-field="line.product_id"/>
+                                                            </t>
                                                             <t t-else="">
                                                                 <span style="color:white">aaa</span>
                                                             </t>
                                                         </div>
-                                                        <div style="width:10%;display:block;float:left;text-align:right;border-right:2px solid black;height:25px;">
-                                                             <t t-if="line.quantity">
-                                                                 <span style="margin-right:2px;" t-esc="'%.2f'%line.quantity"/>
-                                                             </t>
+                                                        <div
+                                                            style="width:10%;display:block;float:left;text-align:right;border-right:2px solid black;height:25px;">
+                                                            <t t-if="line.quantity">
+                                                                <span style="margin-right:2px;"
+                                                                      t-esc="'%.2f'%line.quantity"/>
+                                                            </t>
                                                             <t t-else="">
                                                                 <span style="color:white">aaa</span>
                                                             </t>
                                                         </div>
-                                                        <div style="width:10%;display:block;float:left;text-align:right;border-right:2px solid black;height:25px;">
+                                                        <div
+                                                            style="width:10%;display:block;float:left;text-align:right;border-right:2px solid black;height:25px;">
                                                             <t t-if="line.price_unit">
-                                                                <span style="margin-right:2px;" t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                                             </t>
+                                                                <span style="margin-right:2px;"
+                                                                      t-field="line.price_unit"
+                                                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                            </t>
                                                             <t t-else="">
                                                                 <span style="color:white">aaa</span>
                                                             </t>
                                                         </div>
-                                                        <div style="width:10%;display:block;float:left;text-align:right;height:25px;">
+                                                        <div
+                                                            style="width:10%;display:block;float:left;text-align:right;height:25px;">
                                                             <t t-if="line.price_subtotal">
-                                                                <span style="margin-right:2px;" t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                                             </t>
+                                                                <span style="margin-right:2px;"
+                                                                      t-field="line.price_subtotal"
+                                                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                            </t>
                                                             <t t-else="">
                                                                 <span style="color:white">aaa</span>
                                                             </t>
