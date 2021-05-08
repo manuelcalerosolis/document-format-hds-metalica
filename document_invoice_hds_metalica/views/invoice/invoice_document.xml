@@ -47,6 +47,14 @@
                         <t t-set="importeIva" t-value="0"/>
                         <t t-set="importeRecargo" t-value="0"/>
                         <t t-set="vencimiento" t-value="o.invoice_date_due"/>
+                        <t t-set="banco" t-value=""/>
+                        <t t-if="o.company_id.partner_id.bank_ids[0]">
+                            <t t-set="banco" t-value="o.company_id.partner_id.bank_ids[0].acc_number"/>
+                        </t>
+                        <t t-set="banco2" t-value=""/>
+                        <t t-if="o.company_id.partner_id.bank_ids[1]">
+                            <t t-set="banco2" t-value="o.company_id.partner_id.bank_ids[1].acc_number"/>
+                        </t>
                         <t t-foreach="o.amount_by_group" t-as="amount_by_group">
                             <t t-if="amount_by_group[5] == 1 and o.amount_untaxed == amount_by_group[2]">
                                 <t t-if="amount_by_group[1] > 0">
@@ -101,7 +109,7 @@
                                          <div style="width:100%;background-color:#DFD9D8;">
                                             <p style="margin:0;padding:0;font-weight:bolder;height:25px;margin-left:2px;">Nº Factura</p>
                                         </div>
-                                          <ul style="list-style-type:none;margin:0;padding:0;height:25px;margin-left:2px;">
+                                          <ul style="list-style-type:none;margin:0;padding:0;height:25px;margin-left:2px;font-size:0.9em;">
                                             <li><span t-field="o.name"/></li>
                                         </ul>
 
@@ -151,8 +159,8 @@
                             <table style="margin-top:10px;border:2px solid black;border-bottom:none;" class="col-12">
                                 <!-- Cabecera Lineas -->
                                 <thead>
-                                    <tr style="width:100%;background-color:#DFD9D8;height:25px;font-size:1.2em;">
-                                        <th style="padding:0px;margin:0px;font-size:0.7em;border-bottom:2px solid black;">
+                                    <tr style="width:100%;background-color:#DFD9D8;height:25px;">
+                                        <th style="padding:0px;margin:0px;font-size:0.9em;border-bottom:2px solid black;">
                                             <div style="clear:both;color:black;">
                                                 <div style="width:70%;display:block;float:left;text-align:center;border-right:2px solid black;height:25px;">
                                                     <span><b> Concepto </b></span>
@@ -181,7 +189,7 @@
                                             <td style="padding:0px;margin:0px;">
                                                 <!-- si es nota -->
                                                 <t t-if="not line.product_id">
-                                                    <div class="text-left" style="font-size:0.7em;">
+                                                    <div class="text-left" style="font-size:0.9em;">
                                                         <span style="margin-left:15px;"> NOTA: </span>
                                                         <span t-field="line.name"/>
                                                     </div>
@@ -190,7 +198,7 @@
                                                 <t t-else="">
                                                     <!-- Impresion de lineas -->
                                                     <div style="clear:both;">
-                                                        <div style="width:70%;display:block;float:left;border-right:2px solid black;height:25px;">
+                                                        <div style="width:70%;display:block;float:left;border-right:2px solid black;height:25px;font-size:0.9em;">
                                                            <t t-if="line.product_id">
                                                                <span style="margin-left:2px;" t-field="line.product_id"/>
                                                            </t>
