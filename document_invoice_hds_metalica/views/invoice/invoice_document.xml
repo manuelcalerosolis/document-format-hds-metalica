@@ -69,12 +69,6 @@
                                 <t t-else="">
                                     <t t-set="importe_iva" t-value="amount_by_group[1]"/>
                                 </t>
-                                <!--<t t-if="amount_by_group[0] == 'Recargo de Equivalencia 5.2%'">
-                                    <t t-set="importeRegargo" t-value="amount_by_group[0]"/>
-                                </t>
-                                <t t-else=""> -->
-
-                                <!--</t> -->
                             </t>
                         </t>
                         <!-- Fin variables para el footer -->
@@ -218,8 +212,9 @@
                                 <tbody class="sale_tbody" style="border-bottom:4px solid black; height:100%;">
                                     <t t-foreach="o.invoice_line_ids" t-as="line">
                                         <tr style="border-bottom:2px solid black; height:100%;">
+
                                             <td style="padding:2px; margin:2px; font-size:0.9em; border-top:2px solid black; border-bottom:2px solid black; border-right:2px solid black; border-left:2px solid black;">
-                                                <span t-field="line.name"/>
+                                                <span t-field="line.name" t-options="{'widget': 'text'}"/>
                                             </td>
 
                                             <td style="text-align:right; padding:2px; margin:2px; font-size:0.9em; border-top:2px solid black; border-bottom:2px solid black; border-right:2px solid black; border-left:2px solid black;">
