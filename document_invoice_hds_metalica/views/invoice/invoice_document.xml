@@ -10,7 +10,7 @@
             <field name="page_width">0</field>
             <field name="orientation">Portrait</field>
             <field name="margin_top">55</field>
-            <field name="margin_bottom">55</field>
+            <field name="margin_bottom">70</field>
             <field name="margin_left">7</field>
             <field name="margin_right">7</field>
             <field name="header_line" eval="False"/>
@@ -69,12 +69,6 @@
                                 <t t-else="">
                                     <t t-set="importe_iva" t-value="amount_by_group[1]"/>
                                 </t>
-                                <!--<t t-if="amount_by_group[0] == 'Recargo de Equivalencia 5.2%'">
-                                    <t t-set="importeRegargo" t-value="amount_by_group[0]"/>
-                                </t>
-                                <t t-else=""> -->
-
-                                <!--</t> -->
                             </t>
                         </t>
                         <!-- Fin variables para el footer -->
@@ -170,7 +164,22 @@
                             <div class="col-5" style="margin-left:47px;">
                                 <div class="row">
                                     <div style="width:100%;height:110px;border:2px solid black;">
-
+                                        <ul style="list-style-type:none;margin:0;padding:0;min-height:170px;font-size:0.9em;">
+                                            <li t-if="o.partner_id.name">
+                                                <span t-field="o.partner_id.name"/>
+                                            </li>
+                                            <li t-if="o.partner_id.vat">CIF:
+                                                <span t-field="o.partner_id.vat"/>
+                                            </li>
+                                            <li>
+                                                <span t-field="o.partner_id.street"/>
+                                            </li>
+                                            <li>
+                                                <span t-field="o.partner_id.zip"/>
+                                                <span t-field="o.partner_id.city"/>
+                                                (<span t-field="o.partner_id.state_id.name"/>)
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -218,8 +227,9 @@
                                 <tbody class="sale_tbody" style="border-bottom:4px solid black; height:100%;">
                                     <t t-foreach="o.invoice_line_ids" t-as="line">
                                         <tr style="border-bottom:2px solid black; height:100%;">
+
                                             <td style="padding:2px; margin:2px; font-size:0.9em; border-top:2px solid black; border-bottom:2px solid black; border-right:2px solid black; border-left:2px solid black;">
-                                                <span t-field="line.name"/>
+                                                <span t-field="line.name" t-options="{'widget': 'text'}"/>
                                             </td>
 
                                             <td style="text-align:right; padding:2px; margin:2px; font-size:0.9em; border-top:2px solid black; border-bottom:2px solid black; border-right:2px solid black; border-left:2px solid black;">
