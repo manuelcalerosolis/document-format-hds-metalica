@@ -44,24 +44,30 @@
                         <t t-set="bruto" t-value="o.amount_untaxed"/>
                         <t t-set="total_factura" t-value="o.amount_total"/>
                         <t t-set="modo_pago" t-value="o.invoice_payment_term_id.name"/>
-                        <t t-set="importeIva" t-value="0"/>
-                        <t t-set="importeRecargo" t-value="0"/>
+                        <t t-set="importe_iva" t-value="0"/>
+                        <t t-set="importe_recargo" t-value="0"/>
                         <t t-set="vencimiento" t-value="o.invoice_date_due"/>
+                        <t t-set="banco_cuenta" t-value=""/>
+                        <t t-set="banco_nombre" t-value=""/>
+                        <t t-if="o.company_id.partner_id.bank_ids[:1]">
+                            <t t-set="banco_cuenta" t-value="o.company_id.partner_id.bank_ids[:1].acc_number"/>
+                            <t t-set="banco_nombre" t-value="o.company_id.partner_id.bank_ids[:1].bank_id.name"/>
+                        </t>
                         <t t-foreach="o.amount_by_group" t-as="amount_by_group">
                             <t t-if="amount_by_group[5] == 1 and o.amount_untaxed == amount_by_group[2]">
                                 <t t-if="amount_by_group[1] > 0">
-                                    <t t-set="importeIva" t-value="amount_by_group[1]"/>
+                                    <t t-set="importe_iva" t-value="amount_by_group[1]"/>
                                 </t>
                             </t>
                             <t t-else="">
                                 <t t-set="tax_name" t-value="amount_by_group[0]"/>
                                 <t t-set="tax_name" t-value="tax_name.find('Recargo')"/>
-                                <t t-set="importeRecargo" t-value="tax_name"/>
+                                <t t-set="importe_recargo" t-value="tax_name"/>
                                 <t t-if="tax_name == 0">
-                                    <t t-set="importeRecargo" t-value="amount_by_group[1]"/>
+                                    <t t-set="importe_recargo" t-value="amount_by_group[1]"/>
                                 </t>
                                 <t t-else="">
-                                    <t t-set="importeIva" t-value="amount_by_group[1]"/>
+                                    <t t-set="importe_iva" t-value="amount_by_group[1]"/>
                                 </t>
                                 <!--<t t-if="amount_by_group[0] == 'Recargo de Equivalencia 5.2%'">
                                     <t t-set="importeRegargo" t-value="amount_by_group[0]"/>
@@ -77,7 +83,7 @@
                             <div class="col-6" style="margin-left:-30px;">
                                 <div style="width:100%;overflow:hidden;border:2px solid black;">
                                     <div style="width:50%;float:left;">
-                                        <div style="width:100%;background-color:#DFD9D8;height:25px;">
+                                        <div style="width:100%;background-color:#DFD9D8;height:100%;">
                                             <p style="margin:0;padding:0;font-weight:bolder;margin-left:2px;">Emisor</p>
                                         </div>
                                         <ul style="list-style-type:none;margin:0;padding:0;min-height:170px;font-size:0.9em;margin-left:2px;">
@@ -109,19 +115,18 @@
                                             </li>
                                         </ul>
                                         <div style="width:100%;background-color:#DFD9D8;">
-                                            <p style="margin:0;padding:0;font-weight:bolder;height:25px;margin-left:2px;">
+                                            <p style="margin:0;padding:0;font-weight:bolder;height:100%;margin-left:2px;">
                                                 Nº Factura
                                             </p>
                                         </div>
-                                        <ul style="list-style-type:none;margin:0;padding:0;height:25px;margin-left:2px;">
+                                        <ul style="list-style-type:none;margin:0;padding:0;height:100%;margin-left:2px;font-size:0.9em;">
                                             <li>
                                                 <span t-field="o.name"/>
                                             </li>
                                         </ul>
-
                                     </div>
                                     <div style="width:50%;float:left;">
-                                        <div style="width:100%;background-color:#DFD9D8;height:25px;">
+                                        <div style="width:100%;background-color:#DFD9D8;height:100%;">
                                             <p style="margin:0!important;padding:0;font-weight:bolder;">Destinatario</p>
                                         </div>
                                         <ul style="list-style-type:none;margin:0;padding:0;min-height:170px;font-size:0.9em;">
@@ -146,10 +151,10 @@
                                                 <span t-field="o.partner_id.email"/>
                                             </li>
                                         </ul>
-                                        <div style="width:100%;background-color:#DFD9D8;height:25px;">
+                                        <div style="width:100%;background-color:#DFD9D8;height:100%;">
                                             <p style="margin:0;padding:0;font-weight:bolder;">Fecha</p>
                                         </div>
-                                        <ul style="list-style-type:none;margin:0;padding:0;height:25px;">
+                                        <ul style="list-style-type:none;margin:0;padding:0;height:100%;">
                                             <li>
                                                 <span t-field="o.invoice_date"/>
                                             </li>
@@ -178,38 +183,31 @@
                         <!-- Fin datos de empresa y cliente -->
                         <!-- Lineas del pedido -->
                         <div class="row">
-                            <table style="margin-top:10px;border:2px solid black;border-bottom:none;" class="col-12">
+                            <table style="margin-top:10px; height:100%;"
+                                   class="col-12">
                                 <!-- Cabecera Lineas -->
                                 <thead>
-                                    <tr style="width:100%;background-color:#DFD9D8;height:25px;font-size:1.2em;">
-                                        <th style="padding:0px;margin:0px;font-size:0.7em;border-bottom:2px solid black;">
-                                            <div style="clear:both;color:black;">
-                                                <div
-                                                    style="width:70%;display:block;float:left;text-align:center;border-right:2px solid black;height:25px;">
-                                                    <span>
-                                                        <b>Concepto</b>
-                                                    </span>
-                                                </div>
-                                                <div
-                                                    style="width:10%;display:block;float:left;text-align:center;border-right:2px solid black;height:25px;">
-                                                    <span>
-                                                        <b>Cantidad</b>
-                                                    </span>
-                                                </div>
-                                                <div
-                                                    style="width:10%;display:block;float:left;text-align:center;border-right:2px solid black;height:25px;">
-                                                    <span>
-                                                        <b>Precio</b>
-                                                    </span>
-                                                </div>
-                                                <div
-                                                    style="width:10%;display:block;float:left;text-align:center;height:25px;">
-                                                    <span>
-                                                        <b>Importe</b>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </th>
+                                    <tr style="width:100%;background-color:#DFD9D8;height:100%;">
+                                        <td style="padding:2px; margin:2px; font-size:0.9em; border-top:2px solid black; border-bottom:2px solid black; border-right:2px solid black; border-left:2px solid black;">
+                                            <span>
+                                                <b>Concepto</b>
+                                            </span>
+                                        </td>
+                                        <td style="padding:2px; margin:2px; font-size:0.9em; border-top:2px solid black; border-bottom:2px solid black; border-right:2px solid black; border-left:2px solid black;">
+                                            <span>
+                                                <b>Cantidad</b>
+                                            </span>
+                                        </td>
+                                        <td style="padding:2px; margin:2px; font-size:0.9em; border-top:2px solid black; border-bottom:2px solid black; border-right:2px solid black; border-left:2px solid black;">
+                                            <span>
+                                                <b>Precio</b>
+                                            </span>
+                                        </td>
+                                        <td style="padding:2px; margin:2px; font-size:0.9em; border-top:2px solid black; border-bottom:2px solid black; border-right:2px solid black; border-left:2px solid black;">
+                                            <span>
+                                                <b>Importe</b>
+                                            </span>
+                                        </td>
                                     </tr>
                                 </thead>
                                 <!-- Fin cabecera Lineas -->
@@ -217,70 +215,50 @@
                                 <t t-set="current_subtotal" t-value="0"/>
                                 <t t-set="current_bruto" t-value="0"/>
                                 <!--  Fin variables  -->
-                                <tbody class="sale_tbody" style="border-bottom:4px solid black;">
+                                <tbody class="sale_tbody" style="border-bottom:4px solid black; height:100%;">
                                     <t t-foreach="o.invoice_line_ids" t-as="line">
-                                        <tr style="border-bottom:2px solid black;">
-                                            <td style="padding:0px;margin:0px;">
-                                                <!-- si es nota -->
-                                                <t t-if="not line.product_id">
-                                                    <div class="text-left" style="font-size:0.7em;">
-                                                        <span style="margin-left:15px;">NOTA:</span>
-                                                        <span t-field="line.name"/>
-                                                    </div>
-                                                    <!-- Fin si es nota -->
+                                        <tr style="border-bottom:2px solid black; height:100%;">
+                                            <td style="padding:2px; margin:2px; font-size:0.9em; border-top:2px solid black; border-bottom:2px solid black; border-right:2px solid black; border-left:2px solid black;">
+                                                <span t-field="line.name"/>
+                                            </td>
+
+                                            <td style="text-align:right; padding:2px; margin:2px; font-size:0.9em; border-top:2px solid black; border-bottom:2px solid black; border-right:2px solid black; border-left:2px solid black;">
+                                                <t t-if="line.product_id">
+                                                    <span style="margin-right:2px;"
+                                                          t-field="line.quantity"
+                                                          t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
                                                 </t>
                                                 <t t-else="">
-                                                    <!-- Impresion de lineas -->
-                                                    <div style="clear:both;">
-                                                        <div
-                                                            style="width:70%;display:block;float:left;border-right:2px solid black;height:25px;">
-                                                            <t t-if="line.product_id">
-                                                                <span style="margin-left:2px;"
-                                                                      t-field="line.product_id"/>
-                                                            </t>
-                                                            <t t-else="">
-                                                                <span style="color:white">aaa</span>
-                                                            </t>
-                                                        </div>
-                                                        <div
-                                                            style="width:10%;display:block;float:left;text-align:right;border-right:2px solid black;height:25px;">
-                                                            <t t-if="line.quantity">
-                                                                <span style="margin-right:2px;"
-                                                                      t-esc="'%.2f'%line.quantity"/>
-                                                            </t>
-                                                            <t t-else="">
-                                                                <span style="color:white">aaa</span>
-                                                            </t>
-                                                        </div>
-                                                        <div
-                                                            style="width:10%;display:block;float:left;text-align:right;border-right:2px solid black;height:25px;">
-                                                            <t t-if="line.price_unit">
-                                                                <span style="margin-right:2px;"
-                                                                      t-field="line.price_unit"
-                                                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                                            </t>
-                                                            <t t-else="">
-                                                                <span style="color:white">aaa</span>
-                                                            </t>
-                                                        </div>
-                                                        <div
-                                                            style="width:10%;display:block;float:left;text-align:right;height:25px;">
-                                                            <t t-if="line.price_subtotal">
-                                                                <span style="margin-right:2px;"
-                                                                      t-field="line.price_subtotal"
-                                                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                                            </t>
-                                                            <t t-else="">
-                                                                <span style="color:white">aaa</span>
-                                                            </t>
-                                                        </div>
-                                                    </div>
+                                                    <span></span>
                                                 </t>
-                                                <!-- FIn impresion de lineas -->
                                             </td>
+
+                                            <td style="text-align:right; padding:2px; margin:2px; font-size:0.9em; border-top:2px solid black; border-bottom:2px solid black; border-right:2px solid black; border-left:2px solid black;">
+                                                <t t-if="line.price_unit">
+                                                    <span style="margin-right:2px;"
+                                                          t-field="line.price_unit"
+                                                          t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span></span>
+                                                </t>
+                                            </td>
+
+                                            <td style="text-align:right; padding:2px; margin:2px; font-size:0.9em; border-top:2px solid black; border-bottom:2px solid black; border-right:2px solid black; border-left:2px solid black;">
+                                                <t t-if="line.price_unit">
+                                                    <span style="margin-right:2px;"
+                                                          t-field="line.price_subtotal"
+                                                          t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span></span>
+                                                </t>
+                                            </td>
+
                                         </tr>
                                     </t>
                                 </tbody>
+
                             </table>
                         </div>
                         <!-- Fin lineas del pedido -->
