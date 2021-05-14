@@ -1,54 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <data>
-
-        <record id="paperformat_invoice_hds_metalica" model="report.paperformat">
-            <field name="name">Factura HDS Metalica A4</field>
-            <field name="default" eval="True"/>
-            <field name="format">A4</field>
-            <field name="page_height">0</field>
-            <field name="page_width">0</field>
-            <field name="orientation">Portrait</field>
-            <field name="margin_top">55</field>
-            <field name="margin_bottom">70</field>
-            <field name="margin_left">7</field>
-            <field name="margin_right">7</field>
-            <field name="header_line" eval="False"/>
-            <field name="header_spacing">48</field>
-            <field name="dpi">90</field>
-        </record>
-
         <report
-            id="report_invoice_format"
-            string="Factura HDS Metalica"
-            model="account.move"
+            id="document_invoice_hds_metalica.report_saleorder_format"
+            string="Pedido / Presupuesto HDS Metalica"
+            model="sale.order"
             report_type="qweb-pdf"
-            name="document_invoice_hds_metalica.format_report_invoice_hds_metalica"
+            name="document_invoice_hds_metalica.format_report_saleorder_hds_metalica"
             print_report_name="(object._get_report_base_filename())"
             paperformat="document_invoice_hds_metalica.paperformat_invoice_hds_metalica"
         />
 
-        <template id="format_report_invoice_hds_metalica">
+        <template id="document_invoice_hds_metalica.format_report_saleorder_hds_metalica">
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
-                    <t t-call="document_invoice_hds_metalica.report_invoice_hds_metalica"/>
+                    <t t-call="document_invoice_hds_metalica.report_saleorder_hds_metalica"/>
                 </t>
             </t>
         </template>
-        <template id="document_invoice_hds_metalica.report_invoice_hds_metalica">
-            <t t-name="document_invoice_hds_metalica.report_invoice_hds_metalica">
+
+         <template id="document_invoice_hds_metalica.report_saleorder_hds_metalica">
+            <t t-name="document_invoice_hds_metalica.report_saleorder_hds_metalica">
                 <t t-call="document_invoice_hds_metalica.external_layout_clean_hds_metalica">
                     <t t-set="o" t-value="o.with_context(lang=lang)"/>
                     <div class="page">
                         <!-- Variables para footer -->
-                        <t t-set="move_type" t-value="o.move_type"/>
+                        <t t-set="move_type" t-value=""/>
                         <t t-set="document_type" t-value="o.state"/>
                         <t t-set="bruto" t-value="o.amount_untaxed"/>
                         <t t-set="total_factura" t-value="o.amount_total"/>
-                        <t t-set="modo_pago" t-value="o.invoice_payment_term_id.name"/>
+                        <t t-set="modo_pago" t-value="o.payment_term_id.name"/>
                         <t t-set="importe_iva" t-value="0"/>
                         <t t-set="importe_recargo" t-value="0"/>
-                        <t t-set="vencimiento" t-value="o.invoice_date_due"/>
+                        <t t-set="vencimiento" t-value="o.date_order"/>
                         <t t-set="banco_cuenta" t-value=""/>
                         <t t-set="banco_nombre" t-value=""/>
                         <t t-if="o.company_id.partner_id.bank_ids[:1]">
@@ -111,9 +95,16 @@
                                             </li>
                                         </ul>
                                         <div style="width:100%;background-color:#DFD9D8;">
-                                            <p style="margin:0;padding:0;font-weight:bolder;height:100%;margin-left:2px;">
-                                                Nº Factura
-                                            </p>
+                                            <t t-if="document_type == 'draft'">
+                                                <p style="margin:0;padding:0;font-weight:bolder;height:100%;margin-left:2px;">
+                                                    Nº Presupuesto
+                                                </p>
+                                            </t>
+                                            <t t-else="">
+                                                <p style="margin:0;padding:0;font-weight:bolder;height:100%;margin-left:2px;">
+                                                    Nº Pedido
+                                                </p>
+                                            </t>
                                         </div>
                                         <ul style="list-style-type:none;margin:0;padding:0;height:100%;margin-left:2px;font-size:0.9em;">
                                             <li>
@@ -152,7 +143,7 @@
                                         </div>
                                         <ul style="list-style-type:none;margin:0;padding:0;height:100%;">
                                             <li>
-                                                <span t-field="o.invoice_date"/>
+                                                <span t-field="o.date_order" t-options='{"widget": "date", "format": "dd/MM/Y"}'/>
                                             </li>
                                         </ul>
                                     </div>
@@ -227,7 +218,7 @@
                                 <t t-set="current_bruto" t-value="0"/>
                                 <!--  Fin variables  -->
                                 <tbody class="sale_tbody" style="border-bottom:4px solid black; height:100%;">
-                                    <t t-foreach="o.invoice_line_ids" t-as="line">
+                                    <t t-foreach="o.order_line" t-as="line">
                                         <tr style="border-bottom:2px solid black; height:100%;">
 
                                             <td style="padding:2px; margin:2px; font-size:0.9em; border-top:2px solid black; border-bottom:2px solid black; border-right:2px solid black; border-left:2px solid black;">
@@ -237,7 +228,7 @@
                                             <td style="text-align:right; padding:2px; margin:2px; font-size:0.9em; border-top:2px solid black; border-bottom:2px solid black; border-right:2px solid black; border-left:2px solid black;">
                                                 <t t-if="line.product_id">
                                                     <span style="margin-right:2px;"
-                                                          t-field="line.quantity"
+                                                          t-field="line.product_uom_qty"
                                                           t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
                                                 </t>
                                                 <t t-else="">

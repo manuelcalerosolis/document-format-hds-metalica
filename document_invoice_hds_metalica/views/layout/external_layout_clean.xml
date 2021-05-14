@@ -20,10 +20,32 @@
                                  style="max-height:190px;"/>
                         </div>
                         <div class="col-5 offset-1" name="company_address">
-                            <span
-                                style="text-align:right;display:block;width:100%;font-size:3.2em;font-weight:bolder;margin-top:30px;">
-                                Factura
-                            </span>
+                             <t t-if="document_type == 'sale'">
+                                <span
+                                    style="text-align:right;display:block;width:100%;font-size:3.2em;font-weight:bolder;margin-top:30px;">
+                                    Pedido
+                                </span>
+                            </t>
+                            <t t-if="document_type == 'draft'">
+                                <t t-if="not move_type">
+                                     <span
+                                        style="text-align:right;display:block;width:100%;font-size:3.2em;font-weight:bolder;margin-top:30px;">
+                                        Presupuesto
+                                     </span>
+                                </t>
+                                <t t-else="">
+                                    <span
+                                        style="text-align:right;display:block;width:100%;font-size:3.2em;font-weight:bolder;margin-top:30px;">
+                                        Factura
+                                    </span>
+                                </t>
+                            </t>
+                            <t t-if="document_type == 'posted'">
+                                <span
+                                    style="text-align:right;display:block;width:100%;font-size:3.2em;font-weight:bolder;margin-top:30px;">
+                                    Factura
+                                </span>
+                            </t>
                         </div>
                     </div>
                 </div>

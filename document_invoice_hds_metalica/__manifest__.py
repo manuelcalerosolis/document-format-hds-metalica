@@ -16,6 +16,7 @@
     "data": [
         "views/layout/external_layout_clean.xml",
         "views/invoice/invoice_document.xml",
+        "views/sale_order/sale_order_document.xml",
     ],
     "installable": True,
     "auto_install": False,
