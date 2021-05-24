@@ -76,9 +76,9 @@
                         <!-- Fin variables para el footer -->
                         <!--Datos de empresa y cliente -->
                         <div class="row" style="margin:0;padding:0;">
-                            <div class="col-6" style="margin-left:-30px;">
+                            <div style="margin-left:-1.8%;width:53.999999998%;">
                                 <div style="width:100%;overflow:hidden;border:2px solid black;">
-                                    <div style="width:50%;float:left;">
+                                    <div style="width:45%;float:left;">
                                         <div style="width:100%;background-color:#DFD9D8;height:100%;">
                                             <p style="margin:0;padding:0;font-weight:bolder;margin-left:2px;">Emisor</p>
                                         </div>
@@ -121,7 +121,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div style="width:50%;float:left;">
+                                    <div style="width:55%;float:left;">
                                         <div style="width:100%;background-color:#DFD9D8;height:100%;">
                                             <p style="margin:0!important;padding:0;font-weight:bolder;">Destinatario</p>
                                         </div>
@@ -158,20 +158,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-1">
-                                <div class="row">
-
-                                </div>
-                            </div>
-                            <div class="col-5" style="margin-left:47px;">
+                            <div style="margin-left:9.733333333%;width:38.066666669%;">
                                 <div class="row">
                                     <div style="width:100%;height:110px;border:2px solid black;">
-                                        <ul style="list-style-type:none;margin:0;padding:0;min-height:170px;font-size:0.9em;">
+                                        <ul style="list-style-type:none;margin:0;padding:0;min-height:170px;font-size:0.9em;margin-left:2px;">
                                             <li t-if="o.partner_id.name">
                                                 <span t-field="o.partner_id.name"/>
-                                            </li>
-                                            <li t-if="o.partner_id.vat">CIF:
-                                                <span t-field="o.partner_id.vat"/>
                                             </li>
                                             <li>
                                                 <span t-field="o.partner_id.street"/>
@@ -187,6 +179,7 @@
                                 <div class="row">
                                     <div style="width:100%;height:50px;margin-top:85px;">
                                         <span style="font-weight:bolder;font-size:1.1em;">Obra:</span>
+                                        <span t-if="o.partner_id.ref" t-field="o.partner_id.ref"/>
                                     </div>
                                 </div>
                             </div>
