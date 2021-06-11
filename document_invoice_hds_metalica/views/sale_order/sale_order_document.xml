@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <data>
+
+        <record id="paperformat_sale_hds_metalica" model="report.paperformat">
+            <field name="name">Presupuesto HDS Metalica A4</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">55</field>
+            <field name="margin_bottom">100</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">48</field>
+            <field name="dpi">90</field>
+        </record>
+
         <report
             id="document_invoice_hds_metalica.report_saleorder_format"
             string="Pedido / Presupuesto HDS Metalica"
@@ -8,7 +25,7 @@
             report_type="qweb-pdf"
             name="document_invoice_hds_metalica.format_report_saleorder_hds_metalica"
             print_report_name="(object._get_report_base_filename())"
-            paperformat="document_invoice_hds_metalica.paperformat_invoice_hds_metalica"
+            paperformat="document_invoice_hds_metalica.paperformat_sale_hds_metalica"
         />
 
         <template id="document_invoice_hds_metalica.format_report_saleorder_hds_metalica">
@@ -21,7 +38,7 @@
 
          <template id="document_invoice_hds_metalica.report_saleorder_hds_metalica">
             <t t-name="document_invoice_hds_metalica.report_saleorder_hds_metalica">
-                <t t-call="document_invoice_hds_metalica.external_layout_clean_hds_metalica">
+                <t t-call="document_invoice_hds_metalica.external_layout_sale_hds_metalica">
                     <t t-set="o" t-value="o.with_context(lang=lang)"/>
                     <div class="page">
                         <!-- Variables para footer -->
@@ -60,13 +77,13 @@
                         <!-- Fin variables para el footer -->
                         <!--Datos de empresa y cliente -->
                         <div class="row" style="margin:0;padding:0;">
-                            <div class="col-6" style="margin-left:-30px;">
+                            <div class="col-7" style="margin-left:-30px;">
                                 <div style="width:100%;overflow:hidden;border:2px solid black;">
-                                    <div style="width:50%;float:left;">
+                                    <div style="width:60%;float:left;">
                                         <div style="width:100%;background-color:#DFD9D8;height:100%;">
                                             <p style="margin:0;padding:0;font-weight:bolder;margin-left:2px;">Emisor</p>
                                         </div>
-                                        <ul style="list-style-type:none;margin:0;padding:0;min-height:170px;font-size:0.9em;margin-left:2px;">
+                                        <ul style="list-style-type:none;margin:0;padding:0;min-height:100px;font-size:0.9em;margin-left:2px;">
                                             <li t-if="o.company_id.name">
                                                 <span t-field="o.company_id.name"/>
                                             </li>
@@ -94,64 +111,25 @@
                                                 <span t-field="o.company_id.email"/>
                                             </li>
                                         </ul>
-                                        <div style="width:100%;background-color:#DFD9D8;">
-                                            <t t-if="document_type == 'draft'">
-                                                <p style="margin:0;padding:0;font-weight:bolder;height:100%;margin-left:2px;">
-                                                    Nº Presupuesto
-                                                </p>
-                                            </t>
-                                            <t t-else="">
-                                                <p style="margin:0;padding:0;font-weight:bolder;height:100%;margin-left:2px;">
-                                                    Nº Pedido
-                                                </p>
-                                            </t>
+                                    </div>
+                                    <div style="width:40%;float:left;">
+                                        <div style="width:100%;background-color:#DFD9D8;height:100%;">
+                                            <p style="margin:0!important;padding:0;font-weight:bolder;">_</p>
                                         </div>
-                                        <ul style="list-style-type:none;margin:0;padding:0;height:100%;margin-left:2px;font-size:0.9em;">
+                                        <ul style="list-style-type:none;margin:0;padding:0;min-height:170px;font-size:0.9em;">
                                             <li>
+                                                <b>Obra: </b>
+                                            </li>
+                                            <li>
+                                                <b>Fecha: </b>
+                                                <span t-field="o.date_order" t-options='{"widget": "date", "format": "dd/MM/Y"}'/>
+                                            </li>
+                                            <li>
+                                                <b>Referencia: </b>
                                                 <span t-field="o.name"/>
                                             </li>
                                         </ul>
                                     </div>
-                                    <div style="width:50%;float:left;">
-                                        <div style="width:100%;background-color:#DFD9D8;height:100%;">
-                                            <p style="margin:0!important;padding:0;font-weight:bolder;">Destinatario</p>
-                                        </div>
-                                        <ul style="list-style-type:none;margin:0;padding:0;min-height:170px;font-size:0.9em;">
-                                            <li t-if="o.partner_id.name">
-                                                <span t-field="o.partner_id.name"/>
-                                            </li>
-                                            <li t-if="o.partner_id.vat">CIF:
-                                                <span t-field="o.partner_id.vat"/>
-                                            </li>
-                                            <li>
-                                                <span t-field="o.partner_id.street"/>
-                                            </li>
-                                            <li>
-                                                <span t-field="o.partner_id.zip"/>
-                                                <span t-field="o.partner_id.city"/>
-                                                (<span t-field="o.partner_id.state_id.name"/>)
-                                            </li>
-                                            <li>Tel.
-                                                <span t-field="o.partner_id.phone"/>
-                                            </li>
-                                            <li>
-                                                <span t-field="o.partner_id.email"/>
-                                            </li>
-                                        </ul>
-                                        <div style="width:100%;background-color:#DFD9D8;height:100%;">
-                                            <p style="margin:0;padding:0;font-weight:bolder;">Fecha</p>
-                                        </div>
-                                        <ul style="list-style-type:none;margin:0;padding:0;height:100%;">
-                                            <li>
-                                                <span t-field="o.date_order" t-options='{"widget": "date", "format": "dd/MM/Y"}'/>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-1">
-                                <div class="row">
-
                                 </div>
                             </div>
                             <div class="col-5" style="margin-left:47px;">
@@ -161,9 +139,6 @@
                                             <li t-if="o.partner_id.name">
                                                 <span t-field="o.partner_id.name"/>
                                             </li>
-                                            <li t-if="o.partner_id.vat">CIF:
-                                                <span t-field="o.partner_id.vat"/>
-                                            </li>
                                             <li>
                                                 <span t-field="o.partner_id.street"/>
                                             </li>
@@ -173,11 +148,6 @@
                                                 (<span t-field="o.partner_id.state_id.name"/>)
                                             </li>
                                         </ul>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div style="width:100%;height:50px;margin-top:85px;">
-                                        <span style="font-weight:bolder;font-size:1.1em;">Obra:</span>
                                     </div>
                                 </div>
                             </div>

@@ -14,7 +14,8 @@
         ],
     "license": "AGPL-3",
     "data": [
-        "views/layout/external_layout_clean.xml",
+        "views/layout/external_layout_invoice.xml",
+        "views/layout/external_layout_sale.xml",
         "views/invoice/invoice_document.xml",
         "views/sale_order/sale_order_document.xml",
     ],

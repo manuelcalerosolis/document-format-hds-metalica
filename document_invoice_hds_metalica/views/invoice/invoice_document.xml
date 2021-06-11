@@ -37,7 +37,7 @@
         </template>
         <template id="document_invoice_hds_metalica.report_invoice_hds_metalica">
             <t t-name="document_invoice_hds_metalica.report_invoice_hds_metalica">
-                <t t-call="document_invoice_hds_metalica.external_layout_clean_hds_metalica">
+                <t t-call="document_invoice_hds_metalica.external_layout_invoice_hds_metalica">
                     <t t-set="o" t-value="o.with_context(lang=lang)"/>
                     <div class="page">
                         <!-- Variables para footer -->

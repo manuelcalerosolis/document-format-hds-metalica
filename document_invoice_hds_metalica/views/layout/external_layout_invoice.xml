@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <odoo>
     <data>
-        <template id="external_layout_clean_hds_metalica">
+        <template id="external_layout_invoice_hds_metalica">
             <t t-if="not o and doc">
                 <t t-set="o" t-value="doc"/>
             </t>
