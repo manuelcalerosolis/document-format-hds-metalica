@@ -20,7 +20,7 @@
                                  style="max-height:190px;"/>
                         </div>
                         <div class="col-5 offset-1" name="company_address">
-                             <t t-if="document_type == 'sale'">
+                            <t t-if="document_type == 'sale'">
                                 <span
                                     style="text-align:right;display:block;width:100%;font-size:3.2em;font-weight:bolder;margin-top:30px;">
                                     Pedido
@@ -28,10 +28,10 @@
                             </t>
                             <t t-if="document_type == 'draft'">
                                 <t t-if="not move_type">
-                                     <span
+                                    <span
                                         style="text-align:right;display:block;width:100%;font-size:3.2em;font-weight:bolder;margin-top:30px;">
                                         Presupuesto
-                                     </span>
+                                    </span>
                                 </t>
                                 <t t-else="">
                                     <span
@@ -59,7 +59,7 @@
             </div>
 
             <div t-attf-class="footer o_clean_footer o_company_#{company.id}_layout" style="border:none!important;">
-                <div class="row">
+                <div class="row last-page">
                     <div class="footer_page">
                         <div class="row" style="margin-top:5px;">
                             <div class="col-12">
@@ -128,14 +128,16 @@
                                         <b>Observaciones</b>
                                     </li>
                                     <li>
-                                    - El presente documento tiene una validez de 30 días desde su fecha indicada
+                                        - El presente documento tiene una validez de 30 días desde su fecha indicada
                                     </li>
                                     <li>
-                                    - El presente documento solo incluye los materiales y trabajos en él especificados.
-                                        Cualquier otro material o trabajo adicional se presupuestará aperta
+                                        - El presente documento solo incluye los materiales y trabajos en él
+                                        especificados.
+                                        Cualquier otro material o trabajo adicional se presupuestará aparte
                                     </li>
                                     <li>
-                                    - El cliente autoriza a la empresa a procesar los datos existente de acuerdo al RGPD
+                                        - El cliente autoriza a la empresa a procesar los datos existente de acuerdo
+                                        al RGPD
                                     </li>
                                 </ul>
                             </div>
@@ -166,14 +168,16 @@
                         <br/>
                         <br/>
                         <br/>
-                        <div class="row">
-                            <div class="col-12 text-right">
-                                <span class="page"/>/
-                                <span class="topage"/>
-                            </div>
-                        </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <span class="page"/>/
+                        <span class="topage"/>
+                    </div>
+                </div>
+
             </div>
         </template>
     </data>

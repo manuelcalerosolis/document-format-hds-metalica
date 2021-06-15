@@ -10,7 +10,8 @@
     "depends": [
         "base",
         "account",
-        "product"
+        "product",
+        "report_qweb_element_page_visibility",
         ],
     "license": "AGPL-3",
     "data": [
