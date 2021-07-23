@@ -11,6 +11,7 @@
         "base",
         "account",
         "product",
+        "account_tax_balance",
         "report_qweb_element_page_visibility",
         ],
     "license": "AGPL-3",
