@@ -10,7 +10,7 @@
             <field name="page_width">0</field>
             <field name="orientation">Portrait</field>
             <field name="margin_top">55</field>
-            <field name="margin_bottom">70</field>
+            <field name="margin_bottom">25</field>
             <field name="margin_left">7</field>
             <field name="margin_right">7</field>
             <field name="header_line" eval="False"/>
@@ -35,6 +35,7 @@
                 </t>
             </t>
         </template>
+
         <template id="document_invoice_hds_metalica.report_invoice_hds_metalica">
             <t t-name="document_invoice_hds_metalica.report_invoice_hds_metalica">
                 <t t-call="document_invoice_hds_metalica.external_layout_invoice_hds_metalica">
@@ -266,7 +267,167 @@
 
                             </table>
                         </div>
-                        <!-- Fin lineas del pedido -->
+                        <!-- Fin lineas de la factura -->
+                        <!-- Totales de la factura -->
+                        <div class="clearfix">
+                            <div class="row" style="margin-top:5px;">
+                                <div class="col-12" style="border:1px solid black;">
+                                    <div style="margin-left:-1.8%; width:103.6%; clear:both; border: 2px solid black; height:52px;">
+                                        <!-- Cabecera tabla 1 footer -->
+                                        <div
+                                            style="text-align:center;background-color:#DFD9D8;height:25px;border-bottom:2px solid black;">
+                                            <div
+                                                style="width:15%;float:left;border-right:2px solid black;height:25px;">
+                                                <b>
+                                                    <span>Importe Bruto</span>
+                                                </b>
+                                            </div>
+                                            <div
+                                                style="width:14.75%;float:left;border-right:2px solid black;height:25px;">
+                                                <b>
+                                                    <span>Base Imponible</span>
+                                                </b>
+                                            </div>
+                                            <div style="width:10%;float:left;border-right:2px solid black;height:25px;">
+                                                <b>
+                                                    <span>% IVA</span>
+                                                </b>
+                                            </div>
+                                            <div style="width:16%;float:left;border-right:2px solid black;height:25px;">
+                                                <b>
+                                                    <span>Importe IVA</span>
+                                                </b>
+                                            </div>
+                                            <div style="width:10%;float:left;border-right:2px solid black;height:25px;">
+                                                <b>
+                                                    <span>Retención</span>
+                                                </b>
+                                            </div>
+                                            <div style="width:16%;float:left;border-right:2px solid black;height:25px;">
+                                                <b>
+                                                    <span>Importe Retención</span>
+                                                </b>
+                                            </div>
+                                            <div style="width:18.25%;float:left;height:25px;">
+                                                <b>
+                                                    <span>TOTAL FACTURA</span>
+                                                </b>
+                                            </div>
+                                        </div>
+                                        <!-- Fin cabecera tabla 1 footer -->
+                                        <!-- datos tabla 1 footer -->
+                                        <div style="text-align:right;height:25px;">
+                                            <div
+                                                style="width:15%;float:left;;border-right:2px solid black;height:25px;">
+                                                <span style="margin-right:2px;" t-esc="bruto"
+                                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                            </div>
+                                            <div
+                                                style="width:14.75%;float:left;border-right:2px solid black;height:25px;">
+                                                <span style="margin-right:2px;" t-esc="bruto"
+                                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                            </div>
+                                            <div style="width:10%;float:left;border-right:2px solid black;height:25px;">
+                                                <span style="margin-right:2px;">21%</span>
+                                            </div>
+                                            <div style="width:16%;float:left;border-right:2px solid black;height:25px;">
+                                                <span style="margin-right:2px;" t-esc="importe_iva"
+                                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                            </div>
+                                            <div style="width:10%;float:left;border-right:2px solid black;height:25px;">
+                                                <t t-if="importe_recargo > 0">
+                                                    <span style="margin-right:2px;">5.2%</span>
+                                                </t>
+                                            </div>
+                                            <div style="width:16%;float:left;border-right:2px solid black;height:25px;">
+                                                <t t-if="importe_recargo > 0">
+                                                    <span style="margin-right:2px;" t-esc="importe_recargo"
+                                                          t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                </t>
+                                            </div>
+                                            <div style="width:18.25%;float:left;height:25px;">
+                                                <span style="margin-right:2px;" t-esc="total_factura"
+                                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                            </div>
+                                        </div>
+                                        <!-- Fin datos tabla 1 footer -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top:5px;">
+                                <div class="col-5">
+                                    <div style="margin-left:-4.8%; width:108.8%; border: 2px solid black; height:52px;">
+                                        <!-- Cabecera tabla 2 footer -->
+                                        <div
+                                            style="height:25px;border-bottom:2px solid black; background-color:#DFD9D8;text-align:center;">
+                                            <div style="width:72.5%;float:left;border-right:2px solid black;">
+                                                <b>
+                                                    <span>Importe</span>
+                                                </b>
+                                            </div>
+                                            <div style="width:24.5%;float:left;">
+                                                <b>
+                                                    <span>VTO.</span>
+                                                </b>
+                                            </div>
+                                        </div>
+                                        <!-- Fin cabecera tabla 2 footer -->
+                                        <!-- Datos tabla 2 footer -->
+                                        <div style="height:25px;border-bottom:2px solid black;">
+                                            <div
+                                                style="width:72.5%; float:left; border-right:2px solid black; text-align:right;">
+                                                <span style="margin-right:2px;"
+                                                      t-esc="total_factura"
+                                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                            </div>
+                                            <div style="width:24.5%;float:left;text-align:center;">
+                                                <span style="margin-left:2px;"
+                                                      t-esc="vencimiento"
+                                                      t-options='{"widget": "date", "format": "dd/MM/yy"}'/>
+                                            </div>
+                                        </div>
+                                        <!-- Fin datos tabla 2 footer -->
+                                    </div>
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="col-6" style="font-size:1em;">
+                                    <div style="clear:both; border: 2px solid black; height:106px;width:104%;">
+                                        <div
+                                            style="height:25px;border-bottom:2px solid black; background-color:#DFD9D8;text-align:center;">
+                                            <b>
+                                                <span>Forma de Pago</span>
+                                            </b>
+                                        </div>
+                                        <div style="height:25px;border-bottom:2px solid black;text-align:center;">
+                                            <span t-esc="modo_pago"/>
+                                        </div>
+                                        <div style="height:52px">
+                                            <div
+                                                style="width:22%;float:left;border-right:2px solid black;height:25px;border-bottom:2px solid black;">
+                                                <b>
+                                                    <span style="margin-left:2px;">Banco</span>
+                                                </b>
+                                            </div>
+                                            <div
+                                                style="width:78%;float:left;height:25px;border-bottom:2px solid black;">
+                                                <span t-esc="banco_nombre" style="margin-left:2px;"></span>
+                                            </div>
+                                            <div style="width:22%;float:left;border-right:2px solid black;height:25px;">
+                                                <b>
+                                                    <span style="margin-left:2px;">IBAN</span>
+                                                </b>
+                                            </div>
+                                            <div style="width:78%;float:left;height:25px;">
+                                                <span t-esc="banco_cuenta" style="margin-left:2px;"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Fin totales de la factura -->
                     </div>
                 </t>
             </t>

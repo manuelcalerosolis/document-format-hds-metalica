@@ -59,7 +59,7 @@
             </div>
 
             <div t-attf-class="footer o_clean_footer o_company_#{company.id}_layout" style="border:none!important;">
-                <div class="row last-page">
+                <div class="last-page">
                     <div class="footer_page">
                         <div class="row" style="margin-top:5px;">
                             <div class="col-12">
