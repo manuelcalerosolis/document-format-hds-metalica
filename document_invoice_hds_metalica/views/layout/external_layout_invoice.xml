@@ -57,28 +57,29 @@
                 <t t-call="web.address_layout"/>
                 <t t-raw="0"/>
             </div>
+
             <div t-attf-class="footer o_clean_footer o_company_#{company.id}_layout" style="border:none!important;">
-                    <div class="footer_page">
-                        <div class="row">
-                            <div class="col-11 custom_footer">
-                                <div style="font-size:0.6em;!important;width:100%;">
-                                    En cumplimiento de Reglamento (UE) 2016/679, de 27 Abril de Protección de Datos de
-                                    Carácter Personal, Metálicas HDS SL tiene obligación de informarle de que sus datos
-                                    personales que puedan constar en esta comunicación están incorporados a un fichero
-                                    propiedad de esta empresa. Su finalidad es la gestión interna de la empresa. Puede
-                                    ejercer los derechos de oposición, acceso, rectificación y cancelación mediante
-                                    escrito dirigido a Metálicas HDS SL, Avda. Zaragoza 115. 50800 Zuera (Zaragoza).
-                                    CIF: B-50623362. Si Ud. No desea recibir más información sobre nuestras actividades,
-                                    puede darse de baja en info@hdsmetalicas.es.
-                                </div>
-                            </div>
-                            <div class="col-1 text-right custom_footer">
-                                <span class="page"/>/
-                                <span class="topage"/>
+                <div class="footer_page">
+                    <div class="row">
+                        <div class="col-11 custom_footer">
+                            <div style="font-size:0.6em;!important;width:100%;">
+                                En cumplimiento de Reglamento (UE) 2016/679, de 27 Abril de Protección de Datos de
+                                Carácter Personal, Metálicas HDS SL tiene obligación de informarle de que sus datos
+                                personales que puedan constar en esta comunicación están incorporados a un fichero
+                                propiedad de esta empresa. Su finalidad es la gestión interna de la empresa. Puede
+                                ejercer los derechos de oposición, acceso, rectificación y cancelación mediante
+                                escrito dirigido a Metálicas HDS SL, Avda. Zaragoza 115. 50800 Zuera (Zaragoza).
+                                CIF: B-50623362. Si Ud. No desea recibir más información sobre nuestras actividades,
+                                puede darse de baja en info@hdsmetalicas.es.
                             </div>
                         </div>
-                        <br/>
+                        <div class="col-1 text-right custom_footer">
+                            <span class="page"/>/
+                            <span class="topage"/>
+                        </div>
                     </div>
+                    <br/>
+                </div>
             </div>
         </template>
     </data>

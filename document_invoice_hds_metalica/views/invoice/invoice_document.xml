@@ -235,7 +235,7 @@
                                                           t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
                                                 </t>
                                                 <t t-else="">
-                                                    <span></span>
+                                                    <span/>
                                                 </t>
                                             </td>
 
@@ -246,7 +246,7 @@
                                                           t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                                 </t>
                                                 <t t-else="">
-                                                    <span></span>
+                                                    <span/>
                                                 </t>
                                             </td>
 
@@ -257,14 +257,13 @@
                                                           t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                                 </t>
                                                 <t t-else="">
-                                                    <span></span>
+                                                    <span/>
                                                 </t>
                                             </td>
 
                                         </tr>
                                     </t>
                                 </tbody>
-
                             </table>
                         </div>
                         <!-- Fin lineas de la factura -->

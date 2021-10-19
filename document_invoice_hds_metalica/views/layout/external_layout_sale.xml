@@ -17,32 +17,32 @@
                         <div class="col-6">
                             <img alt="Logo"
                                  t-att-src='"/document_invoice_hds_metalica/static/img/logo_hds_metalica.png"'
-                                 style="max-height:190px;"/>
+                                 style="max-height:95px;"/>
                         </div>
                         <div class="col-5 offset-1" name="company_address">
-                            <t t-if="document_type == 'sale'">
+                             <t t-if="document_type == 'sale'">
                                 <span
-                                    style="text-align:right;display:block;width:100%;font-size:3.2em;font-weight:bolder;margin-top:30px;">
+                                    style="text-align:right;display:block;width:100%;font-size:2.2em;font-weight:bolder;margin-top:30px;">
                                     Pedido
                                 </span>
                             </t>
                             <t t-if="document_type == 'draft'">
                                 <t t-if="not move_type">
-                                    <span
-                                        style="text-align:right;display:block;width:100%;font-size:3.2em;font-weight:bolder;margin-top:30px;">
+                                     <span
+                                        style="text-align:right;display:block;width:100%;font-size:2.2em;font-weight:bolder;margin-top:30px;">
                                         Presupuesto
-                                    </span>
+                                     </span>
                                 </t>
                                 <t t-else="">
                                     <span
-                                        style="text-align:right;display:block;width:100%;font-size:3.2em;font-weight:bolder;margin-top:30px;">
+                                        style="text-align:right;display:block;width:100%;font-size:2.2em;font-weight:bolder;margin-top:30px;">
                                         Factura
                                     </span>
                                 </t>
                             </t>
                             <t t-if="document_type == 'posted'">
                                 <span
-                                    style="text-align:right;display:block;width:100%;font-size:3.2em;font-weight:bolder;margin-top:30px;">
+                                    style="text-align:right;display:block;width:100%;font-size:2.2em;font-weight:bolder;margin-top:30px;">
                                     Factura
                                 </span>
                             </t>
@@ -59,126 +59,174 @@
             </div>
 
             <div t-attf-class="footer o_clean_footer o_company_#{company.id}_layout" style="border:none!important;">
-                <div class="last-page">
-                    <div class="footer_page">
-                        <div class="row" style="margin-top:5px;">
-                            <div class="col-12">
-                                <div style="clear:both;border: 2px solid black;height:52px;">
-                                    <!-- Cabecera tabla 1 footer -->
-                                    <div
-                                        style="text-align:center;background-color:#DFD9D8;height:25px;border-bottom:2px solid black;">
-                                        <div style="width:20%;float:left;border-right:2px solid black;height:25px;">
-                                            <b>
-                                                <span>Importe Bruto</span>
-                                            </b>
-                                        </div>
-                                        <div style="width:20%;float:left;border-right:2px solid black;height:25px;">
-                                            <b>
-                                                <span>Base Imponible</span>
-                                            </b>
-                                        </div>
-                                        <div style="width:16%;float:left;border-right:2px solid black;height:25px;">
-                                            <b>
-                                                <span>% IVA</span>
-                                            </b>
-                                        </div>
-                                        <div style="width:20%;float:left;border-right:2px solid black;height:25px;">
-                                            <b>
-                                                <span>Importe IVA</span>
-                                            </b>
-                                        </div>
-                                        <div style="width:24%;float:left;height:25px;">
-                                            <b>
-                                                <span>TOTAL FACTURA</span>
-                                            </b>
-                                        </div>
-                                    </div>
-                                    <!-- Fin cabecera tabla 1 footer -->
-                                    <!-- datos tabla 1 footer -->
-                                    <div style="text-align:right;height:25px;">
-                                        <div style="width:20%;float:left;border-right:2px solid black;height:25px;">
-                                            <span style="margin-right:2px;" t-esc="bruto"
-                                                  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                        </div>
-                                        <div style="width:20%;float:left;border-right:2px solid black;height:25px;">
-                                            <span style="margin-right:2px;" t-esc="bruto"
-                                                  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                        </div>
-                                        <div style="width:16%;float:left;border-right:2px solid black;height:25px;">
-                                            <span style="margin-right:2px;">21%</span>
-                                        </div>
-                                        <div style="width:20%;float:left;border-right:2px solid black;height:25px;">
-                                            <span style="margin-right:2px;" t-esc="importe_iva"
-                                                  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                        </div>
-                                        <div style="width:24%;float:left;height:25px;">
-                                            <span style="margin-right:2px;" t-esc="total_factura"
-                                                  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                        </div>
-                                    </div>
-                                    <!-- Fin datos tabla 1 footer -->
-                                </div>
+                <div class="footer_page">
+                    <div class="row">
+                        <div class="col-11 custom_footer">
+                            <div style="font-size:0.6em;!important;width:100%;">
+                                En cumplimiento de Reglamento (UE) 2016/679, de 27 Abril de Protección de Datos de
+                                Carácter Personal, Metálicas HDS SL tiene obligación de informarle de que sus datos
+                                personales que puedan constar en esta comunicación están incorporados a un fichero
+                                propiedad de esta empresa. Su finalidad es la gestión interna de la empresa. Puede
+                                ejercer los derechos de oposición, acceso, rectificación y cancelación mediante
+                                escrito dirigido a Metálicas HDS SL, Avda. Zaragoza 115. 50800 Zuera (Zaragoza).
+                                CIF: B-50623362. Si Ud. No desea recibir más información sobre nuestras actividades,
+                                puede darse de baja en info@hdsmetalicas.es.
                             </div>
                         </div>
-                        <br/>
-                        <div class="row">
-                            <div class="col-12 custom_footer">
-                                <ul style="list-style-type:none;font-size:1.0em;!important;width:100%;">
-                                    <li>
-                                        <b>Observaciones</b>
-                                    </li>
-                                    <li>
-                                        - El presente documento tiene una validez de 30 días desde su fecha indicada
-                                    </li>
-                                    <li>
-                                        - El presente documento solo incluye los materiales y trabajos en él
-                                        especificados.
-                                        Cualquier otro material o trabajo adicional se presupuestará aparte
-                                    </li>
-                                    <li>
-                                        - El cliente autoriza a la empresa a procesar los datos existente de acuerdo
-                                        al RGPD
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="col-1 text-right custom_footer">
+                            <span class="page"/>/
+                            <span class="topage"/>
                         </div>
-                        <br/>
-                        <div class="row custom_sing">
-                            <div class="col-12">
-                                <div style="width:50%;float:left;height:25px;">
-                                    <span>Nombre y Apellidos:</span>
-                                </div>
-                                <div style="width:50%;float:left;height:25px;">
-                                    <span style="display:block;text-align:right;">ACEPTO EL PRESUPUESTO</span>
-                                </div>
-                            </div>
-                        </div>
-                        <br/>
-                        <div class="row">
-                            <div class="col-12">
-                                <div style="width:50%;float:left;height:25px;">
-                                    <span>Fecha:</span>
-                                </div>
-                                <div style="width:50%;float:left;height:25px;">
-                                    <span style="display:block;text-align:right;">Firma del Cliente</span>
-                                </div>
-                            </div>
-                        </div>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
                     </div>
+                    <br/>
                 </div>
-
-                <div class="row">
-                    <div class="col-12 text-right">
-                        <span class="page"/>/
-                        <span class="topage"/>
-                    </div>
-                </div>
-
             </div>
         </template>
+
+<!--        <template id="external_layout_sale_hds_metalica">-->
+<!--            <t t-if="not o and doc">-->
+<!--                <t t-set="o" t-value="doc"/>-->
+<!--            </t>-->
+<!--            <t t-if="o and 'company_id' in o">-->
+<!--                <t t-set="company" t-value="o.company_id.sudo()"/>-->
+<!--            </t>-->
+<!--            <t t-if="not o or not 'company_id' in o">-->
+<!--                <t t-set="company" t-value="res_company"/>-->
+<!--            </t>-->
+<!--            <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">-->
+<!--                <div class="o_clean_header">-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-6">-->
+<!--                            <img alt="Logo"-->
+<!--                                 t-att-src='"/document_invoice_hds_metalica/static/img/logo_hds_metalica.png"'-->
+<!--                                 style="max-height:95px;"/>-->
+<!--                        </div>-->
+<!--                        <div class="col-5 offset-1" name="company_address">-->
+<!--                            <t t-if="document_type == 'sale'">-->
+<!--                                <span-->
+<!--                                    style="text-align:right;display:block;width:100%;font-size:2.2em;font-weight:bolder;margin-top:30px;">-->
+<!--                                    Pedido-->
+<!--                                </span>-->
+<!--                            </t>-->
+<!--                            <t t-if="document_type == 'draft'">-->
+<!--                                <t t-if="not move_type">-->
+<!--                                    <span-->
+<!--                                        style="text-align:right;display:block;width:100%;font-size:2.2em;font-weight:bolder;margin-top:30px;">-->
+<!--                                        Presupuesto-->
+<!--                                    </span>-->
+<!--                                </t>-->
+<!--                                <t t-else="">-->
+<!--                                    <span-->
+<!--                                        style="text-align:right;display:block;width:100%;font-size:2.2em;font-weight:bolder;margin-top:30px;">-->
+<!--                                        Factura-->
+<!--                                    </span>-->
+<!--                                </t>-->
+<!--                            </t>-->
+<!--                            <t t-if="document_type == 'posted'">-->
+<!--                                <span-->
+<!--                                    style="text-align:right;display:block;width:100%;font-size:2.2em;font-weight:bolder;margin-top:30px;">-->
+<!--                                    Factura-->
+<!--                                </span>-->
+<!--                            </t>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div t-attf-class="article o_report_layout_clean o_company_#{company.id}_layout"-->
+<!--                 t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"-->
+<!--                 t-att-data-oe-lang="o and o.env.context.get('lang')">-->
+<!--                <t t-call="web.address_layout"/>-->
+<!--                <t t-raw="0"/>-->
+<!--            </div>-->
+
+<!--            <div t-attf-class="footer o_clean_footer o_company_#{company.id}_layout" style="border:2px solid red;">-->
+<!--                <div class="footer_page">-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-11 custom_footer">-->
+<!--                            <div style="font-size:0.6em;!important;width:100%;">-->
+<!--                                En cumplimiento de Reglamento (UE) 2016/679, de 27 Abril de Protección de Datos de-->
+<!--                                Carácter Personal, Metálicas HDS SL tiene obligación de informarle de que sus datos-->
+<!--                                personales que puedan constar en esta comunicación están incorporados a un fichero-->
+<!--                                propiedad de esta empresa. Su finalidad es la gestión interna de la empresa. Puede-->
+<!--                                ejercer los derechos de oposición, acceso, rectificación y cancelación mediante-->
+<!--                                escrito dirigido a Metálicas HDS SL, Avda. Zaragoza 115. 50800 Zuera (Zaragoza).-->
+<!--                                CIF: B-50623362. Si Ud. No desea recibir más información sobre nuestras actividades,-->
+<!--                                puede darse de baja en info@hdsmetalicas.es.-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-1 text-right custom_footer">-->
+<!--                            <span class="page"/>/-->
+<!--                            <span class="topage"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <br/>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--&lt;!&ndash;            <div t-attf-class="footer o_clean_footer o_company_#{company.id}_layout" style="border:none!important;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="last-page">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="footer_page">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="col-12 custom_footer">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <ul style="list-style-type:none;font-size:1.0em;!important;width:100%;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <b>Observaciones</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        - El presente documento tiene una validez de 30 días desde su fecha indicada&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        - El presente documento solo incluye los materiales y trabajos en él&ndash;&gt;-->
+<!--&lt;!&ndash;                                        especificados.&ndash;&gt;-->
+<!--&lt;!&ndash;                                        Cualquier otro material o trabajo adicional se presupuestará aparte&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        - El cliente autoriza a la empresa a procesar los datos existente de acuerdo&ndash;&gt;-->
+<!--&lt;!&ndash;                                        al RGPD&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="row custom_sing">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="col-12">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div style="width:50%;float:left;height:25px;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <span>Nombre y Apellidos:</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div style="width:50%;float:left;height:25px;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <span style="display:block;text-align:right;">ACEPTO EL PRESUPUESTO</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="col-12">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div style="width:50%;float:left;height:25px;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <span>Fecha:</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div style="width:50%;float:left;height:25px;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <span style="display:block;text-align:right;">Firma del Cliente</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="col-12 text-right">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span class="page"/>/&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span class="topage"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--        </template>-->
+
     </data>
 </odoo>
