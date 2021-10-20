@@ -2,85 +2,87 @@
 <odoo>
     <data>
         <template id="external_layout_invoice_hds_metalica">
-            <t t-if="not o and doc">
-                <t t-set="o" t-value="doc"/>
-            </t>
-            <t t-if="o and 'company_id' in o">
-                <t t-set="company" t-value="o.company_id.sudo()"/>
-            </t>
-            <t t-if="not o or not 'company_id' in o">
-                <t t-set="company" t-value="res_company"/>
-            </t>
-            <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
-                <div class="o_clean_header">
-                    <div class="row">
-                        <div class="col-6">
-                            <img alt="Logo"
-                                 t-att-src='"/document_invoice_hds_metalica/static/img/logo_hds_metalica.png"'
-                                 style="max-height:95px;"/>
-                        </div>
-                        <div class="col-5 offset-1" name="company_address">
-                             <t t-if="document_type == 'sale'">
-                                <span
-                                    style="text-align:right;display:block;width:100%;font-size:2.2em;font-weight:bolder;margin-top:30px;">
-                                    Pedido
-                                </span>
-                            </t>
-                            <t t-if="document_type == 'draft'">
-                                <t t-if="not move_type">
-                                     <span
+            <t t-name="external_layout_invoice_hds_metalica">
+                <t t-if="not o and doc">
+                    <t t-set="o" t-value="doc"/>
+                </t>
+                <t t-if="o and 'company_id' in o">
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-if="not o or not 'company_id' in o">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+                <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+                     <div class="o_clean_header">
+                        <div class="row">
+                            <div class="col-6">
+                                <img alt="Logo"
+                                     t-att-src='"/document_invoice_hds_metalica/static/img/logo_hds_metalica.png"'
+                                     style="max-height:95px;"/>
+                            </div>
+                            <div class="col-5 offset-1" name="company_address">
+                                 <t t-if="document_type == 'sale'">
+                                    <span
                                         style="text-align:right;display:block;width:100%;font-size:2.2em;font-weight:bolder;margin-top:30px;">
-                                        Presupuesto
-                                     </span>
+                                        Pedido
+                                    </span>
                                 </t>
-                                <t t-else="">
+                                <t t-if="document_type == 'draft'">
+                                    <t t-if="not move_type">
+                                         <span
+                                            style="text-align:right;display:block;width:100%;font-size:2.2em;font-weight:bolder;margin-top:30px;">
+                                            Presupuesto
+                                         </span>
+                                    </t>
+                                    <t t-else="">
+                                        <span
+                                            style="text-align:right;display:block;width:100%;font-size:2.2em;font-weight:bolder;margin-top:30px;">
+                                            Factura
+                                        </span>
+                                    </t>
+                                </t>
+                                <t t-if="document_type == 'posted'">
                                     <span
                                         style="text-align:right;display:block;width:100%;font-size:2.2em;font-weight:bolder;margin-top:30px;">
                                         Factura
                                     </span>
                                 </t>
-                            </t>
-                            <t t-if="document_type == 'posted'">
-                                <span
-                                    style="text-align:right;display:block;width:100%;font-size:2.2em;font-weight:bolder;margin-top:30px;">
-                                    Factura
-                                </span>
-                            </t>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div t-attf-class="article o_report_layout_clean o_company_#{company.id}_layout"
-                 t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
-                 t-att-data-oe-lang="o and o.env.context.get('lang')">
-                <t t-call="web.address_layout"/>
-                <t t-raw="0"/>
-            </div>
-
-            <div t-attf-class="footer o_clean_footer o_company_#{company.id}_layout" style="border:none!important;">
-                <div class="footer_page">
-                    <div class="row">
-                        <div class="col-11 custom_footer">
-                            <div style="font-size:0.6em;!important;width:100%;">
-                                En cumplimiento de Reglamento (UE) 2016/679, de 27 Abril de Protección de Datos de
-                                Carácter Personal, Metálicas HDS SL tiene obligación de informarle de que sus datos
-                                personales que puedan constar en esta comunicación están incorporados a un fichero
-                                propiedad de esta empresa. Su finalidad es la gestión interna de la empresa. Puede
-                                ejercer los derechos de oposición, acceso, rectificación y cancelación mediante
-                                escrito dirigido a Metálicas HDS SL, Avda. Zaragoza 115. 50800 Zuera (Zaragoza).
-                                CIF: B-50623362. Si Ud. No desea recibir más información sobre nuestras actividades,
-                                puede darse de baja en info@hdsmetalicas.es.
                             </div>
                         </div>
-                        <div class="col-1 text-right custom_footer">
-                            <span class="page"/>/
-                            <span class="topage"/>
-                        </div>
                     </div>
-                    <br/>
                 </div>
-            </div>
+
+                <div t-attf-class="article o_report_layout_clean o_company_#{company.id}_layout"
+                 t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+                 t-att-data-oe-lang="o and o.env.context.get('lang')">
+                    <t t-call="web.address_layout"/>
+                    <t t-raw="0"/>
+                </div>
+
+                <div t-attf-class="footer o_clean_footer o_company_#{company.id}_layout">
+                    <div class="footer_page">
+                        <div class="row">
+                            <div class="col-11 custom_footer">
+                                <div style="font-size:0.6em;!important;width:100%;">
+                                    En cumplimiento de Reglamento (UE) 2016/679, de 27 Abril de Protección de Datos de
+                                    Carácter Personal, Metálicas HDS SL tiene obligación de informarle de que sus datos
+                                    personales que puedan constar en esta comunicación están incorporados a un fichero
+                                    propiedad de esta empresa. Su finalidad es la gestión interna de la empresa. Puede
+                                    ejercer los derechos de oposición, acceso, rectificación y cancelación mediante
+                                    escrito dirigido a Metálicas HDS SL, Avda. Zaragoza 115. 50800 Zuera (Zaragoza).
+                                    CIF: B-50623362. Si Ud. No desea recibir más información sobre nuestras actividades,
+                                    puede darse de baja en info@hdsmetalicas.es.
+                                </div>
+                            </div>
+                            <div class="col-1 text-right custom_footer">
+                                <span class="page"/>/
+                                <span class="topage"/>
+                            </div>
+                        </div>
+                        <br/>
+                    </div>
+                </div>
+            </t>
         </template>
     </data>
 </odoo>
