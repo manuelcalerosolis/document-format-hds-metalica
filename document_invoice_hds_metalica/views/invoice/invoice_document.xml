@@ -267,9 +267,11 @@
                             </table>
                         </div>
                         <!-- Fin lineas de la factura -->
-                        <!-- Totales de la factura -->
-                        <div class="clearfix">
-                            <div class="row" style="margin-top:5px;">
+                        <table style="width:101.25%;margin-left:-0.75%;border-bottom:5px solid white;">
+                            <tr>
+                                <td>
+                                    <!-- Totales de la factura -->
+                                    <div class="row" style="margin-top:5px;">
                                 <div class="col-12" style="border:1px solid black;">
                                     <div style="margin-left:-1.8%; width:103.6%; clear:both; border: 2px solid black; height:52px;">
                                         <!-- Cabecera tabla 1 footer -->
@@ -354,7 +356,7 @@
                                 </div>
                             </div>
 
-                            <div class="row" style="margin-top:5px;">
+                                    <div class="row" style="margin-top:5px;">
                                 <div class="col-5">
                                     <div style="margin-left:-4.8%; width:108.8%; border: 2px solid black; height:52px;">
                                         <!-- Cabecera tabla 2 footer -->
@@ -424,10 +426,12 @@
                                     </div>
                                 </div>
                             </div>
+                                </td>
+                            </tr>
+                        </table>
 
                         </div>
                         <!-- Fin totales de la factura -->
-                    </div>
                 </t>
             </t>
         </template>
